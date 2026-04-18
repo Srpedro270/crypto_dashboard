@@ -32,6 +32,11 @@ with st.sidebar:
 quantidade = st.slider("Quantidade de moedas", 5, 50, 10)
 
 df = get_crypto_data()
+
+if df.empty:
+    st.error("Erro ao carregar dados da API. Tente novamente.")
+    st.stop()
+    
 df = df.head(quantidade)
 
 # selecionar colunas importantes
